@@ -25,8 +25,19 @@ namespace Items
             
             UpdateAmount(itemData.Amount);
             
-            _itemButton.onClick.AddListener(itemData.Use);
+            _itemButton.onClick.AddListener(Use);
             _deleteButton.onClick.AddListener(Delete);
+        }
+
+        private void Use()
+        {
+            ItemData.Use();
+
+            if (!ItemData.IsConsumable) 
+                return;
+            
+            _inventory.AddTrash();
+            Delete();
         }
 
         private void Delete()

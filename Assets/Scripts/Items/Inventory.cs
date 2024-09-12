@@ -13,6 +13,7 @@ namespace Items
         [SerializeField] private Transform _slotContainer;
         [SerializeField] private GameObject _itemSlotButton;
         [SerializeField] private GameObject _menu;
+        [SerializeField] private Trash _trash;
         
         private readonly List<ItemSlot> _inventorySlots = new();
 
@@ -67,14 +68,10 @@ namespace Items
             _inventorySlots.Add(itemSlot);
         }
 
-        public void DeleteSlot(ItemSlot itemSlot)
-        {
-            _inventorySlots.Remove(itemSlot);
-        }
+        public void DeleteSlot(ItemSlot itemSlot) => _inventorySlots.Remove(itemSlot);
 
-        private void ChangeMenuState(InputAction.CallbackContext obj)
-        {
-            _menu.SetActive(!_menu.activeInHierarchy);
-        }
+        public void AddTrash() => AddItem(_trash);
+
+        private void ChangeMenuState(InputAction.CallbackContext obj) => _menu.SetActive(!_menu.activeInHierarchy);
     }
 }
