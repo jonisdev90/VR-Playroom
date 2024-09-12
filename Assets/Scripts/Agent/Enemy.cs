@@ -1,5 +1,4 @@
 using System;
-using Items.ScriptableObjects;
 using UnityEngine;
 
 namespace Agent
@@ -17,12 +16,12 @@ namespace Agent
         
         private void OnEnable()
         {
-            Potion.OnGetHealth += GetHealth;
+            EventsServices.Instance.OnGetHealth += GetHealth;
         }
 
         private void OnDisable()
         {
-            Potion.OnGetHealth -= GetHealth;
+            EventsServices.Instance.OnGetHealth -= GetHealth;
         }
 
         private void GetHealth(int healthAmountRecovery)

@@ -36,8 +36,8 @@ namespace Items
             if (!ItemData.IsConsumable) 
                 return;
             
-            _inventory.AddTrash();
             Delete();
+            _inventory.AddTrash();
         }
 
         private void Delete()

@@ -33,14 +33,14 @@ namespace Items
         {
             _playerInput.Enable();
             
-            ItemContainer.OnAddItem += AddItem;
+            EventsServices.Instance.OnAddItem += AddItem;
         }
 
         private void OnDisable()
         {
             _playerInput.Disable();
             
-            ItemContainer.OnAddItem -= AddItem;
+            EventsServices.Instance.OnAddItem -= AddItem;
         }
 
         private void AddItem(ItemData itemData)
