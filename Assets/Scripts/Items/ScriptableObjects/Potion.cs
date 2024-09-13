@@ -11,7 +11,7 @@ namespace Items.ScriptableObjects
         
         public override void Use()
         {
-            Debug.Log("Use " + ItemName);
+            EventsServices.Instance.OnPlaySound?.Invoke(SoundType.Click);
             
             EventsServices.Instance.OnGetHealth?.Invoke(_healthRecovery);
         }

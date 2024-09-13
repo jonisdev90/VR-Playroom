@@ -45,8 +45,6 @@ namespace Items
 
         private void AddItem(ItemData itemData)
         {
-            Debug.Log("Add Item" + itemData.ItemName);
-
             var itemSlot = _inventorySlots.FirstOrDefault(x => x.ItemData.ItemName == itemData.ItemName);
             
             if (itemSlot != null && itemSlot.ItemData.IsStackable)
@@ -56,9 +54,7 @@ namespace Items
                 CreateSlot(itemData);
 
             else
-            {
-                Debug.Log("No space Available");
-            }
+                EventsServices.Instance.OnPlaySound?.Invoke(SoundType.Error);
         }
 
         private void CreateSlot(ItemData itemData)

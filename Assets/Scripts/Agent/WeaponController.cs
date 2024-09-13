@@ -30,6 +30,8 @@ namespace Agent
 
         public void SetAmmunition(int amount)
         {
+            EventsServices.Instance.OnPlaySound?.Invoke(SoundType.Reload);
+            
             _weapons[_currentWeapon].CurrentAmmunition += amount;
 
             _ammunitionText.text = _weapons[_currentWeapon].CurrentAmmunition.ToString();
@@ -58,6 +60,8 @@ namespace Agent
             _ammunitionText.text = _weapons[_currentWeapon].CurrentAmmunition.ToString();
 
             _cooldown = true;
+            
+            EventsServices.Instance.OnPlaySound?.Invoke(SoundType.Fire);
 
             var bullet = Instantiate(_bullet, _firePoint.position, _firePoint.rotation);
             bullet.GetComponent<Bullet>().Damage = _weapons[_currentWeapon].Damage;

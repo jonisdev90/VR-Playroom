@@ -9,5 +9,6 @@ namespace System
 
         public Action<int> OnGetHealth;
         public Action<ItemData> OnAddItem;
+        public Action<SoundType> OnPlaySound;
     }
 }
