@@ -68,6 +68,26 @@ namespace Items
             _inventorySlots.Add(itemSlot);
         }
 
+        public int GetAmmunition(ItemData itemData, int chargerSize)
+        {
+            var ammunition = 0;
+            
+            var inventorySlot = _inventorySlots.FirstOrDefault(x => x.ItemData.ItemName == itemData.ItemName);
+
+            if (inventorySlot == null) 
+                return ammunition;
+
+            Debug.Log(chargerSize);
+            
+            ammunition = inventorySlot.ItemData.Amount > chargerSize
+                ? chargerSize
+                : inventorySlot.ItemData.Amount;
+
+            inventorySlot.UpdateAmount(-ammunition);
+
+            return ammunition;
+        }
+
         public void DeleteSlot(ItemSlot itemSlot) => _inventorySlots.Remove(itemSlot);
 
         public void AddTrash() => AddItem(_trash);

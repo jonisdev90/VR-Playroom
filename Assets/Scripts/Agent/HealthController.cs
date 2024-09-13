@@ -7,10 +7,11 @@ namespace Agent
     {
         [SerializeField] private int _initialHealth;
         [SerializeField] private Image _healthBar;
+        [SerializeField] private Color[] _colors;
 
         private int _currentHealth = 0;
 
-        private void Start()
+        public void Configure()
         {
             GetHealth(_initialHealth);
         }
@@ -20,6 +21,19 @@ namespace Agent
             _currentHealth = Mathf.Clamp(_currentHealth + healthAmountRecovery, 0, 100);
 
             _healthBar.fillAmount = _currentHealth / 100.0f;
+            
+            UpdateHealthBarColor();
+        }
+
+        private void UpdateHealthBarColor()
+        {
+            _healthBar.color = _currentHealth switch
+            {
+                <= 25 => _colors[0],
+                <= 50 => _colors[1],
+                <= 100 => _colors[2],
+                _ => _healthBar.color
+            };
         }
     }
 }
