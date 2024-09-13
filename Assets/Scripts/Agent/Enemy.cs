@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Agent
@@ -35,6 +36,8 @@ namespace Agent
         public void GetDamage(int damage)
         {
             _healthController.GetHealth(-damage);
+
+            transform.DOPunchScale(Vector3.one * 0.1f, 0.24f, 10, 1F);
         }
     }
 }

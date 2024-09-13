@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ namespace Agent
         {
             _currentHealth = Mathf.Clamp(_currentHealth + healthAmountRecovery, 0, 100);
 
+            _healthBar.DOFillAmount(_currentHealth / 100.0f, 0.1f) ;
             _healthBar.fillAmount = _currentHealth / 100.0f;
             
             UpdateHealthBarColor();
